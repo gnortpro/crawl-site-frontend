@@ -27,7 +27,19 @@
       ],
       "theme": [
         "base/theme"
-      ]
+      ],
+      "hooks/*": [
+        "base/hooks/*"
+      ],
+      "utils": [
+        "base/utils/index"
+      ],
+      "model": [
+        "base/model/index"
+      ],
+      "consts": [
+        "base/consts/index"
+      ],
     },
     "incremental": true
   },
