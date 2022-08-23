@@ -1,13 +1,16 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/reducer';
-import { actions } from './slice';
+
+import { useRouter } from 'next/router';
+
+import cx from 'classnames';
+import { CustomIcon } from 'component/customIcon';
+
+import { SideBarGroup } from './group';
 import { SideBarItem } from './item';
 import { MENU_LIST } from './menuList.const';
-import { SideBarGroup } from './group';
-import cx from 'classnames';
-import { CustomIcon } from 'base/customIcon';
+import { actions } from './slice';
 
 export const SideBar = () => {
   const dispatch = useDispatch();
@@ -15,9 +18,7 @@ export const SideBar = () => {
   const { toggleCollapse, setCollapse } = actions;
   const { pathname } = router;
 
-  const navDrawerReducer = useSelector(
-    (state: RootState) => state.navDrawerReducer
-  );
+  const navDrawerReducer = useSelector((state: RootState) => state.navDrawerReducer);
 
   const { isCollapsed } = navDrawerReducer;
 
@@ -37,43 +38,22 @@ export const SideBar = () => {
       />
       <div
         id="sidebar"
-        className="flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-gray-800 p-4 transition-all duration-200 ease-in-out -translate-x-64"
-      >
+        className="flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-gray-800 p-4 transition-all duration-200 ease-in-out -translate-x-64">
         <div className="flex justify-between mb-10 pr-3 sm:px-2">
-          <button
-            className="lg:hidden text-gray-500 hover:text-gray-400"
-            aria-controls="sidebar"
-            aria-expanded="false"
-          >
+          <button className="lg:hidden text-gray-500 hover:text-gray-400" aria-controls="sidebar" aria-expanded="false">
             <span className="sr-only">Close sidebar</span>
-            <svg
-              className="w-6 h-6 fill-current"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
             </svg>
           </button>
           <a aria-current="page" className="block active" href="/">
             <svg width={32} height={32} viewBox="0 0 32 32">
               <defs>
-                <linearGradient
-                  x1="28.538%"
-                  y1="20.229%"
-                  x2="100%"
-                  y2="108.156%"
-                  id="logo-a"
-                >
+                <linearGradient x1="28.538%" y1="20.229%" x2="100%" y2="108.156%" id="logo-a">
                   <stop stopColor="#A5B4FC" stopOpacity={0} offset="0%" />
                   <stop stopColor="#A5B4FC" offset="100%" />
                 </linearGradient>
-                <linearGradient
-                  x1="88.638%"
-                  y1="29.267%"
-                  x2="22.42%"
-                  y2="100%"
-                  id="logo-b"
-                >
+                <linearGradient x1="88.638%" y1="29.267%" x2="22.42%" y2="100%" id="logo-b">
                   <stop stopColor="#38BDF8" stopOpacity={0} offset="0%" />
                   <stop stopColor="#38BDF8" offset="100%" />
                 </linearGradient>
@@ -99,45 +79,29 @@ export const SideBar = () => {
             <h3 className="text-xs uppercase text-gray-500 font-semibold pl-3">
               <span
                 className="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
-                aria-hidden="true"
-              >
+                aria-hidden="true">
                 •••
               </span>
-              <span className="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                Pages
-              </span>
+              <span className="lg:hidden lg:sidebar-expanded:block 2xl:block">Pages</span>
             </h3>
             <ul className="mt-3">
               {MENU_LIST.map(({ url, label, icon, type, childs }) => {
                 if (type === 'Item') {
-                  return (
-                    <SideBarItem
-                      key={url}
-                      url={url}
-                      label={label}
-                      icon={icon}
-                    />
-                  );
+                  return <SideBarItem key={url} url={url} label={label} icon={icon} />;
                 }
                 if (type === 'Group') {
                   return (
-                    <SideBarGroup
-                      activeCondition={pathname.includes('ecommerce')}
-                      key={url}
-                    >
+                    <SideBarGroup activeCondition={pathname.includes('ecommerce')} key={url}>
                       {(handleClick, open) => {
                         return (
                           <>
                             <a
                               href="#0"
                               className="block text-gray-200 hover:text-white truncate transition duration-150"
-                              onClick={(e) => {
+                              onClick={e => {
                                 e.preventDefault();
-                                !isCollapsed
-                                  ? handleClick()
-                                  : setSidebarExpanded();
-                              }}
-                            >
+                                !isCollapsed ? handleClick() : setSidebarExpanded();
+                              }}>
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center">
                                   {icon && <CustomIcon type={icon} />}
@@ -148,8 +112,7 @@ export const SideBar = () => {
                                 <div className="flex shrink-0 ml-2">
                                   <svg
                                     className="w-3 h-3 shrink-0 ml-1 fill-current text-gray-400 false"
-                                    viewBox="0 0 12 12"
-                                  >
+                                    viewBox="0 0 12 12">
                                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                   </svg>
                                 </div>
@@ -159,14 +122,9 @@ export const SideBar = () => {
                               <ul
                                 className={cx('pl-9 mt-1', {
                                   hidden: open,
-                                })}
-                              >
+                                })}>
                                 {childs.map(({ url, label }) => (
-                                  <SideBarItem
-                                    key={url}
-                                    url={url}
-                                    label={label}
-                                  />
+                                  <SideBarItem key={url} url={url} label={label} />
                                 ))}
                               </ul>
                             </div>
@@ -184,14 +142,8 @@ export const SideBar = () => {
           <div className="px-3 py-2">
             <button onClick={onOpenCloseSideBar}>
               <span className="sr-only">Expand / collapse sidebar</span>
-              <svg
-                className="w-6 h-6 fill-current sidebar-expanded:rotate-180"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  className="text-gray-400"
-                  d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"
-                />
+              <svg className="w-6 h-6 fill-current sidebar-expanded:rotate-180" viewBox="0 0 24 24">
+                <path className="text-gray-400" d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z" />
                 <path className="text-gray-600" d="M3 23H1V1h2z" />
               </svg>
             </button>

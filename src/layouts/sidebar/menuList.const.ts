@@ -1,4 +1,4 @@
-import { IconType } from 'base/customIcon/consts';
+import { IconType } from 'component/customIcon/consts';
 
 interface MenuItemModel {
   url: string;

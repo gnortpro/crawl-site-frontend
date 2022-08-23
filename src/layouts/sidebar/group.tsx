@@ -13,11 +13,7 @@ export const SideBarGroup: FC<IProps> = ({ children, activeCondition }) => {
   };
 
   return (
-    <li
-      className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
-        activeCondition && 'bg-gray-900'
-      }`}
-    >
+    <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${activeCondition && 'bg-gray-900'}`}>
       {children(handleClick, open)}
     </li>
   );

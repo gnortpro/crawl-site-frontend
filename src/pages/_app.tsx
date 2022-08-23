@@ -1,12 +1,15 @@
-import '../../styles/globals.css';
-import type { AppProps } from 'next/app';
-import { Layouts } from 'layouts';
-import { wrapperStore } from 'redux/store';
-import Head from 'next/head';
-import { NextPage } from 'next';
+import { useEffect, useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'redux/reducer';
-import { useEffect, useLayoutEffect } from 'react';
+import { wrapperStore } from 'redux/store';
+
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
+
+import { Layouts } from 'layouts';
+import { NextPage } from 'next';
+
+import '../../styles/globals.css';
 
 type CustomPage = NextPage & {
   requiresAuth?: boolean;
@@ -19,15 +22,11 @@ interface CustomAppProps extends Omit<AppProps, 'Component'> {
 }
 
 const SafeHydrate = ({ children }) => (
-  <div suppressHydrationWarning>
-    {typeof window === 'undefined' ? null : children}
-  </div>
+  <div suppressHydrationWarning>{typeof window === 'undefined' ? null : children}</div>
 );
 
 const MyApp = ({ Component, pageProps }: CustomAppProps) => {
-  const navDrawerReducer = useSelector(
-    (state: RootState) => state.navDrawerReducer
-  );
+  const navDrawerReducer = useSelector((state: RootState) => state.navDrawerReducer);
   const { isCollapsed } = navDrawerReducer;
 
   useEffect(() => {

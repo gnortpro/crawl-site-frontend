@@ -1,5 +1,6 @@
-import { ProductComponent } from 'business/products';
 import React from 'react';
+
+import { ProductComponent } from 'business/products';
 
 const ProductPage = () => {
   return <ProductComponent />;

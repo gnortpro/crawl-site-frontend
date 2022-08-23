@@ -1,11 +1,8 @@
-import {
-  combineReducers,
-  configureStore,
-  getDefaultMiddleware,
-} from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
+import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { createInjectorsEnhancer } from 'redux-injectors';
 import createSagaMiddleware from 'redux-saga';
+
+import { createWrapper } from 'next-redux-wrapper';
 
 import rootReducer from './reducer';
 import rootSaga from './saga';
@@ -37,10 +34,7 @@ const storeConfig = (initialState: any = {}): any => {
       middleware: () =>
         getDefaultMiddleware({
           serializableCheck: {
-            ignoredActions: [
-              ,
-              /** 'breadCrumbSlice/pushDataBreadCrumb' */ 'toastNotificationSlice/showNotification',
-            ],
+            ignoredActions: [, /** 'breadCrumbSlice/pushDataBreadCrumb' */ 'toastNotificationSlice/showNotification'],
           },
         }).concat(middleware),
     });

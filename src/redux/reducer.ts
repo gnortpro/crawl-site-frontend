@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+
 import { reducer as navDrawerReducer } from 'layouts/sidebar/slice';
 
 import { reducer as appReducer } from './slice';
