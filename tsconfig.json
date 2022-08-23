@@ -24,6 +24,9 @@
     "paths": {
       "component/*": [
         "base/component/*"
+      ],
+      "theme": [
+        "base/theme"
       ]
     },
     "incremental": true

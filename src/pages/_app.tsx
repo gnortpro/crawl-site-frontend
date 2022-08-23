@@ -18,6 +18,12 @@ interface CustomAppProps extends Omit<AppProps, 'Component'> {
   Component: CustomPage;
 }
 
+const SafeHydrate = ({ children }) => (
+  <div suppressHydrationWarning>
+    {typeof window === 'undefined' ? null : children}
+  </div>
+);
+
 const MyApp = ({ Component, pageProps }: CustomAppProps) => {
   const navDrawerReducer = useSelector(
     (state: RootState) => state.navDrawerReducer
@@ -37,9 +43,12 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
       <Head>
         <title>Data Manager App</title>
       </Head>
-      <Layouts>
-        <Component {...pageProps} />
-      </Layouts>
+      <div id="portal-container" />
+      <SafeHydrate>
+        <Layouts>
+          <Component {...pageProps} />
+        </Layouts>
+      </SafeHydrate>
     </>
   );
 };
