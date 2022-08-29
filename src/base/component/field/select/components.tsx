@@ -14,8 +14,8 @@ import { MultiValueGenericProps, MultiValueRemoveProps } from 'react-select/src/
 import { LoadingIndicatorProps } from 'react-select/src/components/indicators';
 import { FixedSizeList as List } from 'react-window';
 
-import { CustomIcon } from 'component/components/customIcon';
-import Spinner from 'component/components/spinner';
+import { CustomIcon } from 'component/customIcon';
+import Spinner from 'component/spinner';
 import { ReactSelectOption } from 'model';
 import { nanoid } from 'nanoid';
 import theme from 'theme';

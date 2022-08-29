@@ -5,8 +5,9 @@ import { wrapperStore } from 'redux/store';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
-import { Layouts } from 'layouts';
+import { MainLayout } from 'base/layouts';
 import { NextPage } from 'next';
 
 import '../../styles/globals.css';
@@ -28,6 +29,12 @@ const SafeHydrate = ({ children }) => (
 const MyApp = ({ Component, pageProps }: CustomAppProps) => {
   const navDrawerReducer = useSelector((state: RootState) => state.navDrawerReducer);
   const { isCollapsed } = navDrawerReducer;
+  const router = useRouter();
+  const { pathname } = router;
+
+  console.log('pathname', pathname);
+
+  const PAGE_NOT_LAYOUT = ['login', 'register', 'connect'];
 
   useEffect(() => {
     if (!isCollapsed) {
@@ -44,9 +51,13 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
       </Head>
       <div id="portal-container" />
       <SafeHydrate>
-        <Layouts>
+        {PAGE_NOT_LAYOUT.includes(pathname) ? (
           <Component {...pageProps} />
-        </Layouts>
+        ) : (
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
+        )}
       </SafeHydrate>
     </>
   );

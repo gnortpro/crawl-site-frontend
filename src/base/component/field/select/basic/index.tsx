@@ -15,12 +15,13 @@ export interface SelectBasicProps extends ReactSelectProps<ReactSelectOption, bo
   isInvalid?: boolean;
   isError?: boolean;
   menuIsPortal?: boolean;
+  isClearable?: boolean;
   size?: InputSize;
 }
 
 export const Basic = memo<SelectBasicProps>(
   React.forwardRef<ReactSelect, SelectBasicProps>(
-    ({ emptyOptionMess, onChange, size = 'm', isError, menuIsPortal, ...props }, outerRef) => {
+    ({ emptyOptionMess, onChange, isClearable, size = 'm', isError, menuIsPortal, ...props }, outerRef) => {
       const { isMulti, isDisabled } = props;
       const innerRef = useRef<ReactSelect>();
       const portalTarget = menuIsPortal ? document.body : null;
@@ -90,7 +91,7 @@ export const Basic = memo<SelectBasicProps>(
           hideSelectedOptions={false}
           onChange={handleChange}
           menuPlacement="auto"
-          isClearable
+          isClearable={isClearable}
           {...props}
         />
       );

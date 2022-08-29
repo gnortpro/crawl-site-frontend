@@ -1,8 +1,6 @@
 import { Checkbox } from './checkbox';
 import { CheckboxGroup } from './checkboxGroup';
-import { Code } from './code';
 import { ColorPicker } from './colorPicker';
-import { ColorPickerBuilder } from './colorPickerBuilder';
 import { Number } from './number';
 import { Radio } from './radio';
 import { RadioGroup } from './radioGroup';
@@ -21,7 +19,5 @@ export const Field = {
   Select,
   ColorPicker,
   TextArea,
-  Code,
-  ColorPickerBuilder,
   Number,
 };

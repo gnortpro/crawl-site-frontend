@@ -27,7 +27,7 @@ export default css`
     }
 
     &:focus {
-      border-color: ${theme.color.indigo[100]};
+      border-color: ${theme.color.ink[100]};
     }
 
     &.disabled {

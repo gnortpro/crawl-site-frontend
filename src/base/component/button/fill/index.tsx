@@ -24,7 +24,7 @@ const SPINNER_SIZE_MAP: Record<SizeType, SpinnerSize> = {
 };
 
 const BUTTON_TYPE_MAP_COLOR: Record<ButtonColorType, string> = {
-  primary: 'bg-primary hover:bg-darken-primary text-white',
+  primary: 'bg-indigo-600 hover:bg-darken-primary text-white',
   secondary: 'border-gray-200 border hover:border-gray-300 bg-white text-xs font-medium text-gray-700',
   danger: 'bg-red-500 hover:bg-red-600 text-white',
   success: 'bg-green-500 hover:bg-green-600 text-white',

@@ -7,7 +7,7 @@ interface IProps {
   children: ReactNode;
 }
 
-export const Layouts: FC<IProps> = ({ children }) => {
+export const MainLayout: FC<IProps> = ({ children }) => {
   return (
     <div className="flex h-screen overflow-hidden relative">
       {/* Sidebar */}
